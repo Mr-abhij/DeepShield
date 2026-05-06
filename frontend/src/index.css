@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ── DeepShield exact color palette (matches the reference HTML Tailwind config) ── */
+@theme {
+  /* Fonts */
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Primary / Cyan family */
+  --color-primary:              #dbfcff;
+  --color-primary-container:    #00f0ff;
+  --color-primary-fixed:        #7df4ff;
+  --color-primary-fixed-dim:    #00dbe9;
+  --color-on-primary:           #00363a;
+  --color-on-primary-container: #006970;
+  --color-on-primary-fixed:     #002022;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-inverse-primary:      #006970;
+
+  /* Secondary / Purple family */
+  --color-secondary:            #d1bcff;
+  --color-secondary-container:  #7000ff;
+  --color-secondary-fixed:      #e9ddff;
+  --color-secondary-fixed-dim:  #d1bcff;
+  --color-on-secondary:         #3c0090;
+  --color-on-secondary-container: #ddcdff;
+  --color-on-secondary-fixed:   #23005b;
+  --color-on-secondary-fixed-variant: #5700c9;
+
+  /* Tertiary / Teal family */
+  --color-tertiary:             #d2fff8;
+  --color-tertiary-container:   #00f3e3;
+  --color-tertiary-fixed:       #00fdec;
+  --color-tertiary-fixed-dim:   #00decf;
+  --color-on-tertiary:          #003733;
+  --color-on-tertiary-container: #006b63;
+  --color-on-tertiary-fixed:    #00201d;
+  --color-on-tertiary-fixed-variant: #00504a;
+
+  /* Surface family */
+  --color-surface:              #131313;
+  --color-surface-dim:          #131313;
+  --color-surface-bright:       #3a3939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low:    #1c1b1b;
+  --color-surface-container:        #201f1f;
+  --color-surface-container-high:   #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-variant:          #353534;
+  --color-surface-tint:             #00dbe9;
+
+  /* On-surface */
+  --color-on-surface:           #e5e2e1;
+  --color-on-surface-variant:   #b9cacb;
+  --color-inverse-surface:      #e5e2e1;
+  --color-inverse-on-surface:   #313030;
+
+  /* Background */
+  --color-background:           #131313;
+  --color-on-background:        #e5e2e1;
+
+  /* Outline */
+  --color-outline:              #849495;
+  --color-outline-variant:      #3b494b;
+
+  /* Error */
+  --color-error:                #ffb4ab;
+  --color-error-container:      #93000a;
+  --color-on-error:             #690005;
+  --color-on-error-container:   #ffdad6;
+
+  /* Brand shorthands (for internal app pages) */
+  --color-brand-cyan:           #00f0ff;
+  --color-brand-cyan-dark:      #008899;
+  --color-brand-purple:         #7000ff;
+  --color-brand-purple-dark:    #3e307a;
+  --color-brand-dark:           #131313;
+  --color-brand-panel:          #1c1b1b;
+  --color-brand-red:            #FF4B4B;
+  --color-brand-green:          #00D19D;
+  --color-brand-yellow:         #FFC53D;
+  --color-brand-muted:          #b9cacb;
+}
+
+/* ── Base ── */
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ── Component utilities ── */
+@layer components {
+  .glass-card {
+    background: rgba(28, 27, 27, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+  }
+  .bg-mesh {
+    background:
+      radial-gradient(circle at 0% 0%, #002022 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, #23005b 0%, transparent 50%);
+  }
+
+  /* Internal app panels */
+  .ds-panel {
+    background-color: var(--color-surface-container-low);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 0.75rem;
+  }
+
+  .font-mono-logs {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, var(--color-primary-container), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ── Scan line animation (landing page) ── */
+.scan-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  animation: scan 3s linear infinite;
+}
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(5000%); }
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-container);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-purple-dark); }

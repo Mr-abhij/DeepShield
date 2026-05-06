@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.env
+truthlens.db
+uploads/
+temp_frames/
+app/static/heatmaps/*
+!app/static/heatmaps/.gitkeep
